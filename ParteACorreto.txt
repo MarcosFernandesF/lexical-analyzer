@@ -1,0 +1,10 @@
+if 3 == 3 return 8
+5
+marcos != compiladores
+8 > 5
+if 10 > 5 return 2
+while 5 == 5 return 1
+if 4 != 2 return 3
+while 3 < 10 return 6
+8 >= 8
+marcos > compiladores

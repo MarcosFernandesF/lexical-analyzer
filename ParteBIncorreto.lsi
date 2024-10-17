@@ -1,0 +1,11 @@
+def func1(int A, int B) {
+    C := 123abc;
+    D := #5;
+    E := 0xG;
+    #!#
+}
+
+def principal() {
+    X := $value;
+    Y := ?;   
+}
