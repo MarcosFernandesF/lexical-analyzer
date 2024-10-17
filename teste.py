@@ -1,10 +1,10 @@
-#####################################################
-# PARTE B - Analisador Léxico Usando PLY (FLEX)     #
-# Autor - Marcos Roberto Fernandes Filho (22100915) #
-#####################################################
+####################################################
+# Trabalho: Analisador léxico simples - FLEX       #
+# Autor: Marcos Roberto Fernandes Filho (22100915) #
+####################################################
 
 import ply.lex as lex
-import argparse
+import argparse  # Importando argparse para a linha de comando
 
 # Lista de tokens
 tokens = [
@@ -78,6 +78,7 @@ t_ignore = ' \t'
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+    t.lexer.line_start = t.lexer.lexpos
 
 # Determina a posição (coluna) de um token em relação à linha em que ele aparece no texto de entrada.
 def calcular_coluna(input, token):
@@ -90,15 +91,17 @@ def t_error(t):
     print(f"Erro léxico: '{t.value[0]}' na linha {t.lineno}, coluna {coluna}")
     t.lexer.skip(1)
 
+
 lexer = lex.lex()
 
 def testar_lexer(caminho_arquivo):
     with open(caminho_arquivo, 'r') as arquivo:
         dados = arquivo.read()
     lexer.input(dados)
+    lexer.line_start = 0
     for token in lexer:
         coluna = calcular_coluna(dados, token)
-        print(f"LexToken({token.type}, '{token.value}', {token.lineno}, {coluna})")
+        print(f"LexToken({token.type},'{token.value}',{token.lineno},{coluna})")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Analisador Léxico para a linguagem LSI-2024-2')
